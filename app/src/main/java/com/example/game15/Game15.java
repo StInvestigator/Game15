@@ -29,7 +29,7 @@ public class Game15 {
             {13, 14, 0, 15}
     };
     Game15(){
-//        shuffle();
+        shuffle();
     }
 
     public void shuffle() {
