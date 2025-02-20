@@ -28,11 +28,13 @@ public class Game15 {
             {9, 10, 11, 12},
             {13, 14, 0, 15}
     };
+    private int turnsCount;
     Game15(){
-//        shuffle();
+        shuffle();
     }
 
     public void shuffle() {
+        turnsCount = 0;
         List<Integer> list = new ArrayList<>();
 
         for (int[] row : gameField) {
@@ -111,6 +113,7 @@ public class Game15 {
         }
         gameField[zero.x][zero.y] = val;
         gameField[coord.x][coord.y] = 0;
+        turnsCount++;
 
         return zero;
     }
@@ -131,5 +134,29 @@ public class Game15 {
             prev = list.get(i);
         }
         return true;
+    }
+
+    public int getTurnsCount() {
+        return turnsCount;
+    }
+
+    public void setTurnsCount(int turnsCount) {
+        this.turnsCount = turnsCount;
+    }
+
+    public int[] getGameState() {
+        int[] state = new int[16];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                state[i * 4 + j] = getValue(i, j);
+            }
+        }
+        return state;
+    }
+
+    public void setGameState(int[] state) {
+        for (int i = 0; i < 4; i++) {
+            System.arraycopy(state, i * 4, gameField[i], 0, 4);
+        }
     }
 }

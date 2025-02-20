@@ -2,4 +2,6 @@
     <string name="app_name">game15</string>
     <string name="you_won">You won!</string>
     <string name="restart">Restart</string>
+    <string name="information">Information</string>
+    <string name="back">Back</string>
 </resources>
