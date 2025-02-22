@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -103,7 +106,28 @@ public class MainActivity extends AppCompatActivity {
         CreateButtons();
     }
 
-    public void openInfo(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        if(item.getItemId()==R.id.info){
+            openInfo();
+        }
+        else if(item.getItemId()==R.id.settings){
+            Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void openInfo() {
         Intent intent = new Intent(getBaseContext(), SecondActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             long seconds = Duration.between(startTime, LocalTime.now()).toSeconds();
